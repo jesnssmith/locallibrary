@@ -24,6 +24,21 @@ class BookAdmin(admin.ModelAdmin):
 class BookInstanceAdmin(admin.ModelAdmin):
     list_filter = ('status', 'due_back')
 
+    fieldsets = (
+    (None, {
+        'fields': ('book','imprint', 'id')
+    }),
+    ('Availability', {
+        'fields': ('status', 'due_back')
+    }),
+    )
+
+def display_genre(self):
+    """
+    Creates a string for the Genre. This is required to display genre in Admin.
+    """
+    return ', '.join([ genre.name for genre in self.genre.all()[:3] ])
+display_genre.short_description = 'Genre'
 
 
 

@@ -27,8 +27,19 @@ def index(request):
 
 class BookListView(generic.ListView):
     model = Book
-
-
-class BookDetailView(generic.ListView):
+    # context_object_name = 'my_book_list'   # your own name for the list as a template variable
+    # queryset = Book.objects.filter(title__icontains='war')[:5] # Get 5 books containing the title war
+    # template_name = 'books/my_arbitrary_template_name_list.html'  # Specify your own template name/location
+ 
+ 
+class BookDetailView(generic.DetailView):
     model = Book
     paginate_by = 10
+
+
+class AuthorListView(generic.ListView):
+    model = Author
+
+
+class AuthorDetailView(generic.DetailView):
+    model = Author
