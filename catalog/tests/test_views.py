@@ -190,7 +190,7 @@ class RenewBookInstancesViewTest(TestCase):
         return_date= datetime.date.today() + datetime.timedelta(days=5)
         self.test_bookinstance2=BookInstance.objects.create(book=test_book,imprint='Unlikely Imprint, 2016', due_back=return_date, borrower=test_user2, status='o')
 
-  def test_redirect_if_not_logged_in(self):
+    def test_redirect_if_not_logged_in(self):
         resp = self.client.get(reverse('renew-book-librarian', kwargs={'pk':self.test_bookinstance1.pk,}) )
         #Manually check redirect (Can't use assertRedirect, because the redirect URL is unpredictable)
         self.assertEqual( resp.status_code,302)
